@@ -25,7 +25,7 @@
     </div>
 
     <div class="row justify-content-around">
-        <div class="input-groupcol-4 col-6">
+        <div class="input-groupcol-4 col-12 col-md-6 my-3">
             <div class="input-group-prepend">
                 <!-- <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-cookie p-1 fa-2x"></i></span> -->
             </div>
@@ -33,7 +33,7 @@
                 placeholder="searsh by name">
         </div>
      
-        <div class="col-12 col-md-3 ">
+        <div class="col-12 col-md-3">
             <mat-form-field appearance="outline">
                 <mat-label>Choose an option</mat-label>
                 <mat-select  [(ngModel)]="tagId" (selectionChange)="getRecipes()" >
