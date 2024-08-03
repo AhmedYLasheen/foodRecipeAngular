@@ -96,7 +96,7 @@ openAddCategoryDialog(){
       // console.log('The dialog was closed');
      console.log(result);
      if (result) {
-      this.addCategory(result)
+      this.addCategory(result.name)
      }
      
     });

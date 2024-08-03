@@ -1,17 +1,15 @@
-
-<h2 mat-dialog-title>Add Categorys</h2>
+<h2 mat-dialog-title>{{data.name ? 'Edit Category' : 'Add Category'}}</h2>
 <mat-dialog-content>
-  <!-- <p>What's your favorite animal?</p> -->
   <div class="input-group mb-3 p-3">
     <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-cookie p-1 fa-2x"></i></span>
+      <span class="input-group-text" id="basic-addon1">
+        <i class="fa-solid fa-cookie p-1 fa-2x"></i>
+      </span>
     </div>
-    <input [(ngModel)]="data.name" type="text" class="form-control" placeholder="Add Category"  >
+    <input [(ngModel)]="data.name" type="text" class="form-control" placeholder="Category Name">
   </div>
 </mat-dialog-content>
 <mat-dialog-actions class="d-flex justify-content-between">
   <button class="bg-danger rounded-3 border-0" mat-button (click)="onNoClick()">Close</button>
-  <button  class="bg-primary border-0 rounded" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <button class="bg-primary border-0 rounded" mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
 </mat-dialog-actions>
-
-
