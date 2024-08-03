@@ -33,7 +33,7 @@
                 placeholder="searsh by name">
         </div>
      
-        <div class="col-3 ">
+        <div class="col-12 col-md-3 ">
             <mat-form-field appearance="outline">
                 <mat-label>Choose an option</mat-label>
                 <mat-select  [(ngModel)]="tagId" (selectionChange)="getRecipes()" >
@@ -47,8 +47,8 @@
     </div>
   
 
-    <div *ngIf="tableResponse" class="table">
-        <table class="table  text-center table-striped">
+    <div *ngIf="tableResponse" class="table table-responsive">
+        <table class="table text-center table-striped">
             <thead>
                 <th>Name</th>
                 <th>price</th>
