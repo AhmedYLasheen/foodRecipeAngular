@@ -1,0 +1,63 @@
+<section class="container">
+    <div class=" header-page p-2 mt-4 ">
+        <div class="row">
+            <div class="col-8 text-white ">
+                <h1>categories</h1>
+                <p>You can now add your items that any user can order it from the Application and you can edit</p>
+                <a href="" class="text-white">go to Recipes</a>
+            </div>
+            <div class="col-4 justify-content-end d-flex">
+                <img class="w-25" src="../../../assets/images/Group.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex  justify-content-between mt-1">
+        <div class="w-75">
+            <h6>Categories Table Details</h6>
+            <p>You can check all details
+            </p>
+            <div class="input-group mb-3 p-3">
+                <div class="input-group-prepend">
+                    <!-- <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-cookie p-1 fa-2x"></i></span> -->
+                </div>
+                <input [(ngModel)]="searshKey" (keyup)="getCategories()" type="text" class="form-control" placeholder="searsh by name"  >
+              </div>
+        </div>
+        <div>
+            <button class="px-4 btn btn-info main" (click)="openAddCategoryDialog()">Add New Category</button>
+        </div>
+    </div>
+    <div *ngIf="tableResponse" class="table">
+        <table class="table  text-center table-striped">
+            <thead>
+                <th>Name</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Modification Date</th>
+                <th scope="col">Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of tableDta">
+                    <td>{{item.name}}</td>
+                    <td>{{item.creationDate|date}}</td>
+                    <td>{{item.modificationDate|date}}</td>
+
+                    <td><button class="btn  btn-primary mx-3" (click)="openEditCategoryDialog(item)"> <i
+                                class=" ms-1 fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger" (click)="openDeleteCategoryDialog(item)"> <i class=" ms-1 fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <mat-paginator [length]="tableResponse.totalNumberOfRecords" [pageSize]="tableResponse.pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="handlePageEvent($event)" aria-label="Select page">
+        </mat-paginator>
+
+    </div>
+    <div *ngIf="tableDta.length==0 "  class="text-center">
+        <img src="../../../../assets/images/nullItem1.png" alt="" srcset="">
+        <h1 class="text-center">no Data</h1>
+    </div>
+
+</section>

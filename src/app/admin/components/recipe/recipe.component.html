@@ -1,0 +1,97 @@
+<section class="container">
+    <div class=" header-page  px-2 mt-4 ">
+        <div class="row">
+            <div class="col-9 text-white ">
+                <h1>Recipes</h1>
+                <p>You can now add your items that any user can order it from the Application and you can edit</p>
+                <a href="/admin/dashboard" class="text-white ">go to Category</a>
+            </div>
+            <div class="col-3 justify-content-end d-flex">
+                <img class="w-25" src="../../../assets/images/Group.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+    <div class="row  justify-content-between mt-1">
+        <div class="col-6">
+            <h6>Recipes Table Details</h6>
+            <p>You can check all details
+            </p>
+           
+        </div>
+    
+        <div class="col-6 text-end">
+            <button class="px-4 btn btn-warning " [routerLink]="'/admin/recipes/add'">Add New Category</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-around">
+        <div class="input-groupcol-4 col-6">
+            <div class="input-group-prepend">
+                <!-- <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-cookie p-1 fa-2x"></i></span> -->
+            </div>
+            <input [(ngModel)]="searshKey" (keyup)="getRecipes()" type="text" class="form-control"
+                placeholder="searsh by name">
+        </div>
+     
+        <div class="col-3 ">
+            <mat-form-field appearance="outline">
+                <mat-label>Choose an option</mat-label>
+                <mat-select  [(ngModel)]="tagId" (selectionChange)="getRecipes()" >
+                    <mat-option>None</mat-option>
+                  <mat-option *ngFor="let item of tag" [value]="item.id"> {{item.name}}</mat-option>
+              
+                </mat-select>
+              </mat-form-field>
+              
+        </div>
+    </div>
+  
+
+    <div *ngIf="tableResponse" class="table">
+        <table class="table  text-center table-striped">
+            <thead>
+                <th>Name</th>
+                <th>price</th>
+                <th scope="col">Tag</th>
+                <th>Image</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of tableDta">
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.tag.name}}</td>
+                    <td>
+                        <img [src]='item.imagePath? imagePath+item.imagePath:dummyImage' class="img w-50" alt=""
+                            srcset="">
+                    </td>
+                    <td>{{item.creationDate|date}}</td>
+                    <td>
+                         <span *ngFor="let item of item.category">{{item.name}}</span>,
+                    </td>
+                    <td>
+                        <button [routerLink]="['/admin/recipes/edit', item.id]" class="btn btn-primary m-1">
+                          Edit <i class="ms-1 fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button (click)="openDeleteRecipeDialog(item)" class="btn btn-danger">
+                          <i class="ms-1 fa-solid fa-trash"></i>
+                        </button>
+                      </td>
+                      
+                </tr>
+            </tbody>
+        </table>
+
+        <mat-paginator [length]="tableResponse.totalNumberOfRecords" [pageSize]="tableResponse.pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="handlePageEvent($event)" aria-label="Select page">
+        </mat-paginator>
+
+    </div>
+    <div *ngIf="tableDta.length==0 " class="text-center">
+        <img src="../../../../assets/images/nullItem1.png" alt="" srcset="">
+        <h1 class="text-center">no Data</h1>
+    </div>
+
+</section>

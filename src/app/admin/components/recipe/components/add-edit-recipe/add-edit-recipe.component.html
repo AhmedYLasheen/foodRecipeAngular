@@ -1,0 +1,67 @@
+<section class="container-fluid">
+    <div class=" header-page bg-info rounded p-4 px-2 mt-4 ">
+        <div class="row">
+            <div class="col-6  ">
+                <h4 class="text-dark">Fill The <span class="text-primary">Recipes!</span></h4>
+                <p>You can now fill Recipe that any user can order it from the Application and you can edit</p>
+
+            </div>
+            <div class="col-6 text-end">
+                <button class="px-4 btn btn-primary " [routerLink]="'/admin/recipes'">All Recipes</button>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit(recipeForm)">
+        <div class="container">
+            <div class="row">
+                <div class="input-group mb-3 p-3">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Add recipe name">
+                </div>
+                <div class="input-group mb-3 p-3">
+                    <textarea formControlName="description" type="text" class="form-control" placeholder="Add recipe description "></textarea>
+                </div>
+                <div class="input-group mb-3 p-3">
+                    <input formControlName="price" type="number" class="form-control" placeholder="Add recipe price  ">
+                </div>
+                <div class="w-100 ">
+                    <mat-form-field appearance="outline" class="w-100 ">
+                        <mat-label>Choose an option</mat-label>
+                        <mat-select  formControlName="tagId"  >
+                            <mat-option>All</mat-option>
+                          <mat-option *ngFor="let item of tag" [value]="item.id"> {{item.name}}</mat-option>
+                      
+                        </mat-select>
+                      </mat-form-field>
+                      
+                </div>
+                <div class="w-100 ">
+                    <mat-form-field appearance="outline" class="w-100 ">
+                        <mat-label>Choose an option</mat-label>
+                        <mat-select  formControlName="categoriesIds" multiple >
+                            <!-- <mat-option>All</mat-option> -->
+                          <mat-option *ngFor="let item of categories" [value]="item.id"> {{item.name}} </mat-option>
+                      
+                        </mat-select>
+                      </mat-form-field>
+                      
+                </div>
+                <ngx-dropzone class="dropdown" (change)="onSelect($event)">
+                    <ngx-dropzone-label>Drop it, image!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                        <ngx-dropzone-label></ngx-dropzone-label>
+                      </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+            </div>
+            <hr>
+            <div class="text-end">
+                <button [routerLink]="'/admin/recipes'" class="btn btn-outline">cancel</button>
+                <button class="btn btn-success mx-3 px-4">{{this.recipeId?"Update":"Save"}}</button>
+            </div>
+
+        </div>
+    </form>
+</section>

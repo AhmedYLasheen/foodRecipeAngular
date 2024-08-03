@@ -1,0 +1,19 @@
+.header-page{
+    background-image: url(../../../../assets/images/Rectangle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // height: 20vh;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.table .mat-mdc-paginator .mat-mdc-paginator-container .mat-mdc-paginator-page-size-label{
+    display: none;
+    ;
+}
+
+.img{
+    height: 60px;
+    width: 200px;
+}

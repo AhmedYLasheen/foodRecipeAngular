@@ -1,0 +1,13 @@
+<section>
+    <a class="text-dark d-flex justify-content-end m-2" (click)="onNoClick()"><i class="fa-solid fa-x"></i></a>
+    <div class="text-center p-2 m-4">
+        <img src="../../../assets/images/no-data.png" alt="" srcset="">
+        <h4>are you sure Delete this item (<span>{{data.name}}</span>)</h4>
+        <hr>
+        <div class="text-end">
+            <button class="btn btn-outline-danger" (click)="deleteItem()">Delete This Item</button>
+        
+
+        </div>
+    </div>
+</section>
